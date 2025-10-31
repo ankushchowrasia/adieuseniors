@@ -453,6 +453,25 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* --- Adding keyframe for the credit line --- */
+@keyframes creditFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* .credit-message {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  color: rgba(212, 175, 55, 0.7); 
+  opacity: 0;
+  animation: creditFadeIn 1s ease-out 7.0s forwards; 
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+  letter-spacing: 0.5px;
+  text-align: center;
+  
+  margin-top: 25px; 
+} */
+
 .heart-icon {
   color: var(--primary-gold);
   animation: heartbeat 1.5s ease-in-out infinite;
@@ -504,6 +523,27 @@ body {
   50% { box-shadow: 0 5px 30px rgba(212, 175, 55, 0.6); }
 }
 
+/* --- New style for website-wide credit --- */
+.website-credit {
+  position: fixed;
+  bottom: 15px; /* Increased spacing from bottom */
+  left: 350px; /* Corrected from 375px to 30px */
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+  color: rgba(212, 175, 55, 0.7); /* Subdued gold */
+  opacity: 0; /* Start hidden */
+  /* animation: creditFadeIn 1s ease-out 7.0s forwards; */ /* We'll use JS instead */
+  transition: opacity 0.5s ease; /* Add a smooth fade-in */
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+  letter-spacing: 0.25px;
+  z-index: 100;
+}
+/* --- Add a class to show the credit --- */
+.website-credit.visible {
+  opacity: 1;
+}
+/* --- End of new style --- */
+
 @media (max-width: 768px) {
   body { background-attachment: scroll; }
   .content-card { border-radius: 30px; padding: clamp(40px, 8vw, 60px) clamp(25px, 6vw, 40px); }
@@ -517,6 +557,13 @@ body {
   .divider::before { left: -20px; }
   .divider::after { right: -20px; }
   .audio-control { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 20px; }
+  
+  /* --- Adjust credit for tablet --- */
+  .website-credit {
+    bottom: 20px;
+    left: 20px;
+    font-size: 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -527,6 +574,16 @@ body {
   .detail-item { margin: 15px 0; }
   .intro-logo { width: clamp(180px, 50vw, 280px); height: clamp(180px, 50vw, 280px); }
   .corner-decoration { width: 40px; height: 40px; }
+
+  /* --- Center credit on small screens --- */
+  .website-credit {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    text-align: center;
+    bottom: 20px; /* Readjust for mobile */
+    font-size: 0.5rem;
+  }
 }
 
 @media (max-width: 360px) {
@@ -589,13 +646,19 @@ body {
     </div>
 
     <div class="footer-message">With best wishes from your juniors! <span class="heart-icon">❤</span></div>
+    
+    <!-- <div class="credit-message">Made by Ankush Chowrasia XI-HUM</div> -->
   </div>
 </div>
+
+<!-- --- New credit line outside the card --- -->
+<div class="website-credit">Mfg.by Ankush Chowrasia</div>
 
 <div class="audio-control" id="audioControl">🔊</div>
 
 <audio id="bg-music" loop>
   <source src="https://github.com/ankushchowrasia/farewellivitation/raw/a28f46e04b67689eca97b2020ffdd3cde121f593/goodbye-108880.mp3" type="audio/mpeg">
+Failure to load resource: the server responded with a status of 404 ()
 </audio>
 
 <script>
@@ -629,16 +692,48 @@ document.addEventListener('DOMContentLoaded', () => {
     isPlaying = !isPlaying;
   });
 
+  // Try to autoplay after a delay, handle block
   setTimeout(() => {
-    music.play().then(() => {
-      isPlaying = true;
-      audioControl.classList.add('playing');
-    }).catch(() => {
-      console.log('Autoplay blocked');
-    });
-  }, 5000);
+    // We set a timeout to allow the user to interact first, but also to wait past the intro
+    const playPromise = music.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.then(_ => {
+        // Autoplay started
+        isPlaying = true;
+        audioControl.textContent = '🔊';
+        audioControl.classList.add('playing');
+      }).catch(error => {
+        // Autoplay was prevented
+        console.log('Autoplay blocked by browser.');
+        audioControl.textContent = '🔇';
+        isPlaying = false;
+      });
+    }
+  }, 5000); // 5 seconds delay, after intro animation
+
+  // --- Scroll listener for credit line ---
+  const creditLine = document.querySelector('.website-credit');
+  
+  function checkScroll() {
+    // Check if user is near the bottom of the page (with a 10px buffer)
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+      creditLine.classList.add('visible');
+    } else {
+      // Optional: You could hide it again if they scroll up
+      creditLine.classList.remove('visible');
+    }
+  }
+
+  // Check when the user scrolls
+  window.addEventListener('scroll', checkScroll);
+  
+  // Also check on load, in case the page isn't scrollable
+  checkScroll();
+  // --- End of new scroll listener ---
 });
 </script>
 
 </body>
 </html>
+
