@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saint Paul's School Farewell Invitation 2025</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Pacifico&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      width: 100vw;
+      background: #000;
+      font-family: 'Dancing Script', cursive;
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
+      position: relative;
+    }
+
+    .bg-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bg-layer {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+        url('https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/f437af8ed79ac3f7f1d1ff368dfcc67c9def381f/websiteankush.jpg')
+        no-repeat center center/cover;
+      background-attachment: fixed;
+      animation: bgZoom 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgZoom {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.2) rotate(2deg); }
+    }
+
+    .cyber-grid {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes gridMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+    }
+
+    .particles-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    @keyframes floatParticle {
+      0% { transform: translate(0, 100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translate(100px, -100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .light-beam {
+      position: fixed;
+      top: -100%; left: 0;
+      width: 2px; height: 200%;
+      background: linear-gradient(to bottom, transparent, rgba(255, 215, 0, 0.8), transparent);
+      animation: beamScan 8s linear infinite;
+      z-index: 2;
+      pointer-events: none;
+      filter: blur(2px);
+    }
+
+    @keyframes beamScan {
+      0% { left: 0%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { left: 100%; opacity: 0; }
+    }
+
+    .intro-logo-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/f437af8ed79ac3f7f1d1ff368dfcc67c9def381f/websiteankush.jpg')
+        no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      animation: fadeOutIntro 1s ease-out 4s forwards;
+    }
+
+    @keyframes fadeOutIntro { 
+      to { opacity: 0; visibility: hidden; transform: scale(1.5); } 
+    }
+
+    .intro-logo-wrapper {
+      position: relative;
+      animation: float3D 3s ease-in-out forwards;
+    }
+
+    @keyframes float3D {
+      0% { transform: perspective(1000px) rotateY(0deg) scale(0); opacity: 0; }
+      20% { transform: perspective(1000px) rotateY(360deg) scale(1.2); opacity: 1; }
+      80% { transform: perspective(1000px) rotateY(720deg) scale(1); opacity: 1; }
+      100% { transform: perspective(1000px) rotateY(1080deg) scale(0.8); opacity: 1; }
+    }
+
+    .intro-logo {
+      width: clamp(200px, 40vw, 380px);
+      border-radius: 50%;
+      border: 6px solid rgba(255,255,255,0.5);
+      box-shadow: 0 0 40px rgba(255,215,0,0.8), 0 0 80px rgba(0,255,255,0.6), 0 0 120px rgba(255,0,255,0.4);
+      animation: logoGlowPulse 2s ease-in-out infinite;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes logoGlowPulse {
+      0%, 100% { box-shadow: 0 0 40px rgba(255,215,0,0.8), 0 0 80px rgba(0,255,255,0.6); }
+      50% { box-shadow: 0 0 60px rgba(255,215,0,1), 0 0 120px rgba(0,255,255,1); }
+    }
+
+    .holo-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 120%; height: 120%;
+      border: 3px solid rgba(0,255,255,0.6);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: ringRotate 4s linear infinite;
+      box-shadow: 0 0 30px rgba(0,255,255,0.8);
+    }
+
+    @keyframes ringRotate {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .intro-text {
+      margin-top: 40px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+      animation: textReveal 1s ease-out 1.5s forwards, gradientFlow 3s ease infinite;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    @keyframes textReveal {
+      from { transform: translateY(50px); opacity: 0; filter: blur(10px); }
+      to { transform: translateY(0); opacity: 1; filter: blur(0); }
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .content-card {
+      position: relative;
+      z-index: 10;
+      max-width: 1000px;
+      width: 90%;
+      margin: 80px auto;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      border-radius: 40px;
+      padding: clamp(50px, 8vw, 100px);
+      border: 3px solid transparent;
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        linear-gradient(135deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.6), 0 0 100px rgba(0,255,255,0.3);
+      opacity: 0;
+      transform: translateY(100px);
+      animation: cardEntrance 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 4.5s forwards;
+    }
+
+    @keyframes cardEntrance {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .school-logo-left, .school-logo-right {
+      position: absolute;
+      top: 20px;
+      width: clamp(60px, 10vw, 90px);
+      border-radius: 50%;
+      box-shadow: 0 0 30px rgba(255,215,0,0.9), 0 0 60px rgba(0,255,255,0.6);
+      border: 4px solid rgba(255,255,255,0.5);
+      opacity: 0;
+      animation: logoEntrance 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 5s forwards;
+      z-index: 15;
+      transition: transform 0.3s ease;
+    }
+
+    .school-logo-left { left: 20px; }
+    .school-logo-right { right: 20px; }
+
+    @keyframes logoEntrance {
+      from { transform: scale(0) rotate(720deg); opacity: 0; }
+      to { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    .school-logo-left:hover, .school-logo-right:hover {
+      transform: scale(1.2) rotateY(360deg);
+    }
+
+    .title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      background: linear-gradient(90deg, #ffffff, #ffd700, #00ffff, #ff00ff, #ffd700, #ffffff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleShimmer 3s linear infinite, titleFloat 4s ease-in-out infinite;
+      margin-top: 80px;
+      margin-bottom: 40px;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      filter: drop-shadow(0 0 20px rgba(255,215,0,0.6));
+    }
+
+    @keyframes titleShimmer {
+      to { background-position: 200% center; }
+    }
+
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .subtitle {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+      background: linear-gradient(45deg, #ff6b6b, #ffd700, #ff00ff);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 35px;
+      animation: subtitleWave 4s ease-in-out infinite;
+      letter-spacing: 2px;
+      filter: drop-shadow(0 0 15px rgba(255,107,107,0.8));
+    }
+
+    @keyframes subtitleWave {
+      0%, 100% { background-position: 0% 50%; transform: scale(1); }
+      50% { background-position: 100% 50%; transform: scale(1.05); }
+    }
+
+    .divider {
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(to right, transparent, #00ffff, #ffd700, #ff00ff, #ffd700, #00ffff, transparent);
+      background-size: 200% 100%;
+      animation: dividerFlow 3s linear infinite, dividerExpand 2s ease-in-out infinite;
+      margin: 35px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,215,0,0.6);
+    }
+
+    @keyframes dividerFlow {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 200% 0%; }
+    }
+
+    @keyframes dividerExpand {
+      0%, 100% { width: 60%; }
+      50% { width: 85%; }
+    }
+
+    .message {
+      font-size: clamp(1.1rem, 2.8vw, 1.8rem);
+      color: #eee;
+      line-height: 2.1;
+      margin-bottom: 40px;
+      text-align: justify;
+      text-align-last: center;
+      animation: messageReveal 1s ease-out 5.5s backwards;
+    }
+
+    @keyframes messageReveal {
+      from { opacity: 0; transform: translateY(30px); filter: blur(5px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    .event-details {
+      background: linear-gradient(135deg, rgba(0,255,255,0.1), rgba(255,0,255,0.1), rgba(255,215,0,0.1));
+      border-radius: 30px;
+      padding: clamp(30px, 5vw, 50px);
+      border: 2px solid transparent;
+      background-image: 
+        linear-gradient(rgba(10,10,10,0.9), rgba(10,10,10,0.9)),
+        linear-gradient(135deg, #00ffff, #ff00ff, #ffd700);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      margin: 40px 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      animation: detailsFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes detailsFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 25px 0;
+      font-size: clamp(1.2rem, 2.8vw, 2rem);
+      color: #fff;
+      font-weight: 700;
+      animation: detailSlideIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
+      transition: all 0.3s ease;
+    }
+
+    .detail-item:nth-child(1) { animation-delay: 5.8s; }
+    .detail-item:nth-child(2) { animation-delay: 6s; }
+    .detail-item:nth-child(3) { animation-delay: 6.2s; }
+
+    @keyframes detailSlideIn {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .detail-item:hover {
+      transform: scale(1.05) translateY(-5px);
+      text-shadow: 0 0 20px rgba(255,215,0,0.8);
+    }
+
+    .detail-highlight {
+      background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: highlightShine 2s linear infinite;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      margin-left: 10px;
+      filter: drop-shadow(0 0 10px rgba(255,215,0,0.6));
+    }
+
+    @keyframes highlightShine {
+      to { background-position: 200% center; }
+    }
+
+    .footer-message {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+      background: linear-gradient(45deg, #ff6b6b, #ffd700, #ff00ff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 50px;
+      animation: footerReveal 1s ease-out 6.4s backwards, footerFloat 3s ease-in-out 7.4s infinite;
+      filter: drop-shadow(0 0 15px rgba(255,107,107,0.6));
+    }
+
+    @keyframes footerReveal {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes footerFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .heart-icon {
+      display: inline-block;
+      color: #ff0066;
+      font-size: 1.3em;
+      animation: heartbeat 1.2s ease infinite;
+      filter: drop-shadow(0 0 15px rgba(255,0,102,0.8));
+      margin-left: 10px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      10%, 30% { transform: scale(1.4); }
+      20%, 40% { transform: scale(1.3); }
+    }
+
+    .scanline {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(to bottom, transparent, rgba(0,255,255,0.6), transparent);
+      animation: scanlineMove 4s linear infinite;
+      z-index: 9998;
+      pointer-events: none;
+    }
+
+    @keyframes scanlineMove {
+      from { top: 0%; }
+      to { top: 100%; }
+    }
+
+    @media (max-width: 768px) {
+      .title { margin-top: 60px; letter-spacing: 3px; }
+      .school-logo-left, .school-logo-right { width: clamp(50px, 12vw, 75px); }
+      .detail-item { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .title { margin-top: 50px; letter-spacing: 2px; }
+      .message { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-container">
+    <div class="bg-layer"></div>
+  </div>
+  <div class="cyber-grid"></div>
+  <div class="particles-container" id="particles"></div>
+  
+  <div class="light-beam" style="animation-delay: 0s;"></div>
+  <div class="light-beam" style="animation-delay: 2s;"></div>
+  <div class="light-beam" style="animation-delay: 4s;"></div>
+  <div class="light-beam" style="animation-delay: 6s;"></div>
+
+  <div class="scanline"></div>
+
+  <div class="intro-logo-container">
+    <div class="intro-logo-wrapper">
+      <div class="holo-ring"></div>
+      <img src="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/54e3d067aa543a7ccef09566b2435a7e8c059f3c/school%20logo.png" class="intro-logo" alt="School Logo">
+    </div>
+    <div class="intro-text">Saint Paul's School</div>
+    <div class="intro-text">Farewell Celebration 2025</div>
+  </div>
+
+  <div class="content-card">
+    <img src="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/54e3d067aa543a7ccef09566b2435a7e8c059f3c/school%20logo.png" class="school-logo-left" alt="Left Logo">
+    <img src="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/54e3d067aa543a7ccef09566b2435a7e8c059f3c/school%20logo.png" class="school-logo-right" alt="Right Logo">
+
+    <div class="title">Farewell Celebration</div>
+    <div class="subtitle">🌟 Dear Seniors 🌟</div>
+    <div class="divider"></div>
+
+    <div class="message">
+      Dear Seniors, we warmly invite you to an evening of memories, laughter, and celebration 🎉 as we bid farewell to you all. Let us come together to cherish the journey, honor the bonds we've shared, and welcome a new beginning with smiles and gratitude. 😊
+    </div>
+
+    <div class="event-details">
+      <div class="detail-item">📅 <span>Date: <span class="detail-highlight">22nd December, 2025</span></span></div>
+      <div class="detail-item">⏰ <span>Time: <span class="detail-highlight">4:00 PM Onwards</span></span></div>
+      <div class="detail-item">📍 <span>Venue: <span class="detail-highlight">Saint Paul's School, Paharpur Campus</span></span></div>
+    </div>
+
+    <div class="footer-message">With best wishes from your juniors! <span class="heart-icon">❤</span></div>
+  </div>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="https://github.com/ankushchowrasia/farewellivitation/raw/a28f46e04b67689eca97b2020ffdd3cde121f593/goodbye-108880.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    window.addEventListener('load', () => {
+      const music = document.getElementById('bg-music');
+      music.muted = false;
+      music.play().catch(() => {});
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('particles');
+      const colors = ['rgba(255,215,0,1)', 'rgba(0,255,255,1)', 'rgba(255,0,255,1)'];
+      
+      for (let i = 0; i < 100; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.animationDelay = `${Math.random() * 20}s`;
+        p.style.animationDuration = `${15 + Math.random() * 10}s`;
+        const size = Math.random() * 6 + 2;
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        p.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
+        p.style.animation = 'floatParticle 20s infinite ease-in-out';
+        container.appendChild(p);
+      }
+    });
+  </script>
+</body>
+</html>
