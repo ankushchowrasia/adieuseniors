@@ -1,444 +1,708 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Protected — Saint Paul's School Farewell Invitation</title>
-<meta name="description" content="Protected invite" />
-<meta name="theme-color" content="#0f0f19" />
-
-<!-- Favicons preserved -->
-<link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/ankushchowrasia/images/4c194ded86ea8e51cc47661648241ed33137879a/Screenshot%202025-11-16%20191547.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/ankushchowrasia/images/4c194ded86ea8e51cc47661648241ed33137879a/Screenshot%202025-11-16%20191547.png">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/ankushchowrasia/images/4c194ded86ea8e51cc47661648241ed33137879a/Screenshot%202025-11-16%20191547.png">
-
-<!-- Minimal top-level styles (iframe container + protections) -->
-<style>
-  html,body{height:100%;margin:0}
-  body{background:#0f0f19;display:flex;align-items:center;justify-content:center;font-family:system-ui,Segoe UI,Roboto,Arial}
-  #frameWrap{width:100%;height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
-  #protectedFrame{width:100%;max-width:1200px;height:100%;border-radius:18px;border:0;box-shadow:0 30px 80px rgba(0,0,0,0.6)}
-  /* Basic overlay to discourage accidental selection */
-  .topNotice{position:fixed;left:16px;top:16px;color:#d4af37;font-family:Georgia,serif;font-size:0.9rem;z-index:9999;opacity:0.95}
-  /* disable text selection in outer page */
-  :root,body,html,#frameWrap { -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
-</style>
-</head>
-<body>
-
-<div class="topNotice">Protected invite — copy protection enabled</div>
-<div id="frameWrap"><iframe id="protectedFrame" sandbox="allow-scripts allow-same-origin"></iframe></div>
-
-<script>
-/*
-  Protection layer (top-level):
-  - disables context menu
-  - blocks common inspect shortcuts
-  - blocks selection & copying on top-level
-  - injects full invitation HTML into iframe (keeps top-level source minimal)
-  Note: No client-side protection is absolute.
-*/
-
-/* 1) UI/UX protections at top-level */
-document.addEventListener('contextmenu', function(e){ e.preventDefault(); }, {passive:false});
-document.addEventListener('selectstart', function(e){ e.preventDefault(); }, {passive:false});
-document.addEventListener('copy', function(e){ e.preventDefault(); }, {passive:false});
-
-/* 2) Block common DevTools/Source shortcuts (best-effort) */
-document.addEventListener('keydown', function(e){
-  // F12
-  if (e.keyCode === 123) { e.preventDefault(); return false; }
-  // Ctrl+Shift+I / J / C
-  if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) { e.preventDefault(); return false; }
-  // Ctrl+U
-  if (e.ctrlKey && e.keyCode === 85) { e.preventDefault(); return false; }
-  // Ctrl+Shift+K (Firefox)
-  if (e.ctrlKey && e.shiftKey && e.keyCode === 75) { e.preventDefault(); return false; }
-}, {passive:false});
-
-/* 3) Small random delay to make automated scraping slightly harder */
-function randDelay(min, max) { return Math.floor(min + Math.random()*(max-min)); }
-
-/* 4) The protected invitation HTML (injected into iframe).
-   - To make casual copying harder we split the markup into multiple chunks and join at runtime.
-   - This is reversible by a determined user, but the splitting + iframe makes casual copy/paste harder.
-   - The content below is your optimized invitation HTML (kept unchanged).
-*/
-
-/* CHUNKED HTML (split to frustrate copy/paste) */
-var htmlChunks = [
-`<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Saint Paul's School Farewell Invitation 2025</title>
 
-<!-- SEO -->
-<meta name="description" content="Saint Paul's School Farewell Invitation 2025 — an elegant digital invitation with animations, music, and event details." />
-<meta name="theme-color" content="#0f0f19" />
+<!-- Favicon Added -->
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ankushchowrasia/images/4c194ded86ea8e51cc47661648241ed33137879a/Screenshot%202025-11-16%20191547.png">
 
-<!-- Favicon (multiple sizes) -->
-<link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/ankushchowrasia/images/4c194ded86ea8e51cc47661648241ed33137879a/Screenshot%202025-11-16%20191547.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/ankushchowrasia/images/4c194ded86ea8e51cc47661648241ed33137879a/Screenshot%202025-11-16%20191547.png">
-<link rel="icon" type="image/png" sizes="64x64" href="https://raw.githubusercontent.com/ankushchowrasia/images/4c194ded86ea8e51cc47661648241ed33137879a/Screenshot%202025-11-16%20191547.png">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/ankushchowrasia/images/4c194ded86ea8e51cc47661648241ed33137879a/Screenshot%202025-11-16%20191547.png">
-
-<!-- Preload important images to improve LCP -->
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/f437af8ed79ac3f7f1d1ff368dfcc67c9def381f/websiteankush.jpg">
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/54e3d067aa543a7ccef09566b2435a7e8c059f3c/school%20logo.png">
-
-<!-- Fonts (preconnect + fallback stack) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Pacifico&family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-/* -------------------------
-   Core / Resets
-   ------------------------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-:root{
-  --primary-gold:#d4af37;
-  --soft-gold:#f4e4c1;
-  --card-bg:rgba(15,15,25,0.92);
-  --text-light:#f5f5f5;
-  --accent-red:#c75450;
-  --max-width:950px;
+
+:root {
+--primary-gold: #d4af37;
+--soft-gold: #f4e4c1;
+--card-bg: rgba(15, 15, 25, 0.92);
+--text-light: #f5f5f5;
+--accent-red: #c75450;
 }
 
-/* Fallback font stacks included */
-body{
-  min-height:100vh;
-  width:100vw;
-  background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(20,20,30,0.8)),
-    url('https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/f437af8ed79ac3f7f1d1ff368dfcc67c9def381f/websiteankush.jpg') no-repeat center center/cover;
-  background-attachment: fixed;
-  font-family:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  color:var(--text-light);
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+body {
+min-height: 100vh;
+width: 100vw;
+background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(20, 20, 30, 0.8)),
+url('https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/f437af8ed79ac3f7f1d1ff368dfcc67c9def381f/websiteankush.jpg')
+no-repeat center center/cover;
+background-attachment: fixed;
+font-family: 'Cormorant Garamond', serif;
+color: var(--text-light);
+overflow-x: hidden;
 }
 
-/* -------------------------
-   Particles (kept as original)
-   ------------------------- */
-.particles{
-  position:fixed; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none;
+.particles {
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100%;
+z-index: 1;
+pointer-events: none;
 }
-.particle{
-  position:absolute;
-  background: radial-gradient(circle, rgba(212,175,55,0.8), rgba(212,175,55,0));
-  border-radius:50%;
-  animation: floatParticle 20s infinite ease-in-out;
-  will-change: transform, opacity;
+
+.particle {
+position: absolute;
+background: radial-gradient(circle, rgba(212, 175, 55, 0.8), rgba(212, 175, 55, 0));
+border-radius: 50%;
+animation: floatParticle 20s infinite ease-in-out;
 }
+
 @keyframes floatParticle {
-  0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity:0; }
-  5% { opacity:1; }
-  50% { transform: translateY(50vh) translateX(100px) rotate(180deg); opacity:0.8; }
-  95% { opacity:1; }
-  100% { transform: translateY(-10vh) translateX(-50px) rotate(360deg); opacity:0; }
+0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+5% { opacity: 1; }
+50% { transform: translateY(50vh) translateX(100px) rotate(180deg); opacity: 0.8; }
+95% { opacity: 1; }
+100% { transform: translateY(-10vh) translateX(-50px) rotate(360deg); opacity: 0; }
 }
 
-/* -------------------------
-   Intro / Logo overlay
-   ------------------------- */
-.intro-logo-container{
-  position:fixed; inset:0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(20,20,30,0.98)),
-    url('https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/f437af8ed79ac3f7f1d1ff368dfcc67c9def381f/websiteankush.jpg')
-    no-repeat center center/cover;
-  display:flex; align-items:center; justify-content:center; flex-direction:column;
-  z-index:9999; animation: fadeOutIntro 1.2s ease-out 4s forwards;
+.intro-logo-container {
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100%;
+background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 30, 0.98)),
+url('https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/f437af8ed79ac3f7f1d1ff368dfcc67c9def381f/websiteankush.jpg')
+no-repeat center center/cover;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+z-index: 9999;
+animation: fadeOutIntro 1.2s ease-out 4s forwards;
 }
-.intro-logo-wrapper{ position:relative; animation: logoEntrance 2s cubic-bezier(0.68,-0.55,0.265,1.55) forwards; }
-.intro-logo{
-  width:clamp(200px,40vw,350px); height:clamp(200px,40vw,350px); border-radius:50%;
-  border:4px solid var(--primary-gold);
-  box-shadow:0 0 40px rgba(212,175,55,0.6), 0 0 80px rgba(212,175,55,0.4), 0 0 120px rgba(212,175,55,0.2);
-  animation:pulseGlow 3s ease-in-out infinite; object-fit:cover;
+
+.intro-logo-wrapper {
+position: relative;
+animation: logoEntrance 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
-.intro-rings{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:120%; height:120%; border:2px solid rgba(212,175,55,0.3); border-radius:50%; animation: ringExpand 2s ease-out forwards; }
-.intro-rings:nth-child(2){ width:140%; height:140%; animation-delay:0.3s; }
-@keyframes ringExpand { 0%{ transform:translate(-50%,-50%) scale(0); opacity:0 } 50%{ opacity:0.6 } 100%{ transform:translate(-50%,-50%) scale(1); opacity:0.3 } }
-@keyframes logoEntrance { 0%{ transform:scale(0) rotate(-180deg); opacity:0 } 60%{ transform:scale(1.1) rotate(10deg) } 100%{ transform:scale(1) rotate(0deg); opacity:1 } }
-@keyframes pulseGlow { 0%,100%{ box-shadow:0 0 40px rgba(212,175,55,0.6),0 0 80px rgba(212,175,55,0.4) } 50%{ box-shadow:0 0 60px rgba(212,175,55,0.8),0 0 120px rgba(212,175,55,0.6) } }
-.intro-text-group{ margin-top:50px; text-align:center; }
-.intro-text{ font-family:'Cinzel', 'Times New Roman', serif; font-size:clamp(1.8rem,5vw,3.2rem); font-weight:600; color:var(--primary-gold); opacity:0; letter-spacing:3px; text-transform:uppercase; animation:fadeInUpText 1.2s ease-out 1.2s forwards; text-shadow:0 0 20px rgba(212,175,55,0.5); }
-.intro-text:nth-child(2){ font-family:'Great Vibes', cursive; font-size:clamp(1.5rem,4vw,2.5rem); color:var(--accent-red); letter-spacing:1px; margin-top:15px; animation-delay:1.8s; }
 
-/* -------------------------
-   Main content card
-   ------------------------- */
-.content-wrapper{ position:relative; z-index:10; padding:80px 20px; display:flex; justify-content:center; align-items:center; min-height:100vh; }
-.content-card{
-  max-width:var(--max-width); width:100%; background:var(--card-bg); backdrop-filter: blur(20px) saturate(180%);
-  border-radius:40px; padding:clamp(50px,7vw,90px) clamp(30px,5vw,70px);
-  border:2px solid rgba(212,175,55,0.3);
-  box-shadow:0 30px 80px rgba(0,0,0,0.6), 0 0 100px rgba(212,175,55,0.12);
-  position:relative; opacity:0; transform:translateY(60px) scale(0.95); animation: cardEntrance 1.2s cubic-bezier(0.34,1.56,0.64,1) 4.2s forwards;
+.intro-logo {
+width: clamp(200px, 40vw, 350px);
+height: clamp(200px, 40vw, 350px);
+border-radius: 50%;
+border: 4px solid var(--primary-gold);
+box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 80px rgba(212, 175, 55, 0.4), 0 0 120px rgba(212, 175, 55, 0.2);
+animation: pulseGlow 3s ease-in-out infinite;
+object-fit: cover;
 }
-@keyframes cardEntrance{ to{ opacity:1; transform:translateY(0) scale(1) } }
 
-/* corner decorations */
-.corner-decoration{ position:absolute; width:80px; height:80px; border:2px solid var(--primary-gold); opacity:0; animation: cornerFadeIn 0.8s ease-out 4.8s forwards; }
-.corner-decoration.top-left{ top:-2px; left:-2px; border-right:none; border-bottom:none; border-radius:40px 0 0 0; }
-.corner-decoration.top-right{ top:-2px; right:-2px; border-left:none; border-bottom:none; border-radius:0 40px 0 0; }
-.corner-decoration.bottom-left{ bottom:-2px; left:-2px; border-right:none; border-top:none; border-radius:0 0 0 40px; }
-.corner-decoration.bottom-right{ bottom:-2px; right:-2px; border-left:none; border-top:none; border-radius:0 0 40px 0; }
-@keyframes cornerFadeIn { from{ opacity:0; transform:scale(0.5) } to{ opacity:0.4; transform:scale(1) } }
-`,
-
-`/* logos (kept visible, added alt + loading) */
-.school-logo-left, .school-logo-right{
-  position:absolute; top:20px; width:clamp(55px,10vw,90px); height:clamp(55px,10vw,90px); border-radius:50%;
-  box-shadow:0 0 30px rgba(212,175,55,0.6), 0 5px 20px rgba(0,0,0,0.35);
-  border:3px solid var(--primary-gold); opacity:0; z-index:15; object-fit:cover; transition:transform .3s ease;
+.intro-rings {
+position: absolute;
+top: 50%; left: 50%;
+transform: translate(-50%, -50%);
+width: 120%; height: 120%;
+border: 2px solid rgba(212, 175, 55, 0.3);
+border-radius: 50%;
+animation: ringExpand 2s ease-out forwards;
 }
-.school-logo-left{ left:20px; animation:logoSlideInLeft 1s cubic-bezier(0.68,-0.55,0.265,1.55) 4.8s forwards; }
-.school-logo-right{ right:20px; animation:logoSlideInRight 1s cubic-bezier(0.68,-0.55,0.265,1.55) 4.8s forwards; }
-.school-logo-left:hover, .school-logo-right:hover{ transform:scale(1.1) rotate(5deg); }
-@keyframes logoSlideInLeft { from{ transform:translateX(-100px) rotate(-180deg) scale(0); opacity:0 } to{ transform:translateX(0) rotate(0deg) scale(1); opacity:1 } }
-@keyframes logoSlideInRight { from{ transform:translateX(100px) rotate(180deg) scale(0); opacity:0 } to{ transform:translateX(0) rotate(0deg) scale(1); opacity:1 } }
 
-/* title / subtitle / divider */
-.title-wrapper{ margin-top:clamp(60px,10vw,80px); margin-bottom:40px; text-align:center; }
-.title{
-  font-family:'Cinzel', 'Times New Roman', serif; font-size:clamp(2.5rem,7vw,4.5rem); font-weight:600;
-  background: linear-gradient(135deg,#ffffff 0%, var(--primary-gold) 25%, var(--soft-gold) 50%, var(--primary-gold) 75%, #ffffff 100%);
-  background-size:300% 300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  animation: titleReveal 1s ease-out 5s forwards, gradientFlow 4s ease 5.5s infinite; line-height:1.3; letter-spacing:4px; text-transform:uppercase;
-  position:relative; display:inline-block; opacity:0;
+.intro-rings:nth-child(2) {
+width: 140%; height: 140%;
+animation-delay: 0.3s;
 }
-@keyframes titleReveal { to{ opacity:1 } }
-.title::before, .title::after{ content:''; position:absolute; height:2px; width:0; background:linear-gradient(90deg, transparent, var(--primary-gold), transparent); left:50%; transform:translateX(-50%); animation: lineExpand 1.5s ease-out 5.3s forwards; }
-.title::before{ top:-15px } .title::after{ bottom:-15px }
-@keyframes lineExpand{ to{ width:100% } }
-@keyframes gradientFlow { 0%,100%{ background-position:0% 50% } 50%{ background-position:100% 50% } }
 
-.subtitle{ font-family:'Great Vibes', cursive; font-size:clamp(1.5rem,4vw,2.5rem); color:var(--accent-red); margin-bottom:30px; opacity:0; animation:fadeInScale .8s ease-out 5.5s forwards, subtitleGlow 3s ease-in-out 6.5s infinite; letter-spacing:1px; text-align:center; }
-@keyframes fadeInScale{ from{ opacity:0; transform:scale(0.8) } to{ opacity:1; transform:scale(1) } }
-@keyframes subtitleGlow{ 0%,100%{ filter:drop-shadow(0 0 5px rgba(199,84,80,0.3)); transform:scale(1) } 50%{ filter:drop-shadow(0 0 15px rgba(199,84,80,0.6)); transform:scale(1.02) } }
-
-.divider{ width:0; height:2px; background:linear-gradient(to right, transparent, var(--primary-gold), transparent); margin:35px auto; position:relative; animation: dividerExpand 1.5s ease-out 5.6s forwards; }
-.divider::before, .divider::after{ content:'❖'; position:absolute; top:50%; transform:translateY(-50%); font-size:12px; color:var(--primary-gold); opacity:0; animation:symbolFade .8s ease-out 6.8s forwards; }
-.divider::before{ left:-30px } .divider::after{ right:-30px }
-@keyframes dividerExpand{ to{ width:70% } } @keyframes symbolFade{ to{ opacity:1 } }
-
-/* message */
-.message{ font-size:clamp(1.1rem,2.8vw,1.7rem); font-weight:300; color:#e8e8e8; line-height:2; margin-bottom:40px; text-align:center; opacity:0; animation:messageReveal 1s ease-out 5.8s forwards; letter-spacing:0.5px; padding:0 10px; }
-@keyframes messageReveal{ from{ opacity:0; transform:translateY(20px) } to{ opacity:1; transform:translateY(0) } }
-
-/* event details */
-.event-details{
-  background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(30,30,40,0.6) 50%, rgba(212,175,55,0.08) 100%);
-  border-radius:25px; padding:clamp(30px,5vw,45px); border:2px solid rgba(212,175,55,0.25); margin:40px 0; position:relative; overflow:hidden;
-  box-shadow: inset 0 0 30px rgba(212,175,55,0.05), 0 10px 40px rgba(0,0,0,0.3);
+@keyframes ringExpand {
+0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+50% { opacity: 0.6; }
+100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
 }
-.event-details::before{ content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent); animation: shimmer 3s infinite 7s; }
-@keyframes shimmer{ to{ left:100% } }
 
-.detail-item{ display:flex; align-items:center; justify-content:center; margin:20px 0; font-size:clamp(1.2rem,3vw,1.9rem); font-weight:400; color:var(--text-light); opacity:0; animation: detailSlideIn .8s cubic-bezier(0.34,1.56,0.64,1) forwards; letter-spacing:1px; gap:15px; }
-.detail-item:nth-child(1){ animation-delay:6s } .detail-item:nth-child(2){ animation-delay:6.3s } .detail-item:nth-child(3){ animation-delay:6.6s }
-@keyframes detailSlideIn{ from{ transform:translateX(-80px); opacity:0 } to{ transform:translateX(0); opacity:1 } }
-.detail-icon{ font-size:clamp(1.5rem,4vw,2.2rem); animation: iconBounce 2s ease-in-out infinite; display:inline-block; }
-@keyframes iconBounce{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-5px) } }
-.detail-highlight{ color:var(--primary-gold); font-weight:600; text-shadow:0 0 10px rgba(212,175,55,0.3); margin-left:8px; }
-`,
-
-`/* footer */
-.footer-message{ font-family:'Great Vibes', cursive; font-size:clamp(1.4rem,3.5vw,2.4rem); color:var(--accent-red); margin-top:40px; opacity:0; animation: footerFadeIn 1s ease-out 6.8s forwards; text-shadow:0 0 15px rgba(199,84,80,0.3); letter-spacing:1px; text-align:center; }
-@keyframes footerFadeIn{ from{ opacity:0; transform:translateY(20px) } to{ opacity:1; transform:translateY(0) } }
-
-/* audio control */
-.audio-control{
-  position:fixed; bottom:30px; right:30px; z-index:1000; width:60px; height:60px; border-radius:50%;
-  background:var(--card-bg); border:2px solid var(--primary-gold); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:24px; color:var(--primary-gold);
-  box-shadow:0 5px 20px rgba(0,0,0,0.5); transition:all .3s ease; opacity:0; animation: audioControlFadeIn .5s ease-out 5s forwards;
+@keyframes logoEntrance {
+0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+60% { transform: scale(1.1) rotate(10deg); }
+100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
-@keyframes audioControlFadeIn{ to{ opacity:1 } }
-.audio-control:hover{ transform:scale(1.1); box-shadow:0 8px 30px rgba(212,175,55,0.4) }
-.audio-control.playing{ animation:pulse 2s ease-in-out infinite 5.5s }
-@keyframes pulse{ 0%,100%{ box-shadow:0 5px 20px rgba(0,0,0,0.5) } 50%{ box-shadow:0 5px 30px rgba(212,175,55,0.6) } }
 
-/* website credit */
-.website-credit{ position:fixed; bottom:15px; left:30px; font-family:'Cormorant Garamond', Georgia, serif; font-size:clamp(0.6rem,1.5vw,0.8rem); color:rgba(212,175,55,0.7); opacity:0; transition:opacity .5s ease; text-shadow:0 0 10px rgba(212,175,55,0.2); letter-spacing:0.25px; z-index:100; text-align:left; }
-.website-credit.visible{ opacity:1 }
-`,
+@keyframes pulseGlow {
+0%, 100% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 80px rgba(212, 175, 55, 0.4); }
+50% { box-shadow: 0 0 60px rgba(212, 175, 55, 0.8), 0 0 120px rgba(212, 175, 55, 0.6); }
+}
 
-`@media (max-width:768px){
-  body{ background-attachment:scroll; }
-  .content-card{ border-radius:30px; padding:clamp(40px,8vw,60px) clamp(25px,6vw,40px) }
-  .school-logo-left, .school-logo-right{ width:clamp(50px,12vw,70px); height:clamp(50px,12vw,70px); top:15px }
-  .school-logo-left{ left:15px } .school-logo-right{ right:15px }
-  .title-wrapper{ margin-top:clamp(55px,12vw,70px) }
-  .title{ letter-spacing:2px }
-  .detail-item{ flex-direction:column; text-align:center; gap:8px }
-  .corner-decoration{ width:50px; height:50px }
-  .divider::before{ left:-20px } .divider::after{ right:-20px }
-  .audio-control{ width:50px; height:50px; bottom:20px; right:20px; font-size:20px }
-  .website-credit{ bottom:20px; left:20px; font-size:0.5rem }
+.intro-text-group {
+margin-top: 50px;
+text-align: center;
 }
-@media (max-width:480px){
-  .content-card{ border-radius:25px }
-  .title{ letter-spacing:1px }
-  .title::before, .title::after{ display:none }
-  .event-details{ padding:clamp(25px,6vw,35px) }
-  .detail-item{ margin:15px 0 }
-  .intro-logo{ width:clamp(180px,50vw,280px); height:clamp(180px,50vw,280px) }
-  .corner-decoration{ width:40px; height:40px }
-  .website-credit{ left:50%; transform:translateX(-50%); width:90%; text-align:center; bottom:20px; font-size:0.5rem }
+
+.intro-text {
+font-family: 'Cinzel', serif;
+font-size: clamp(1.8rem, 5vw, 3.2rem);
+font-weight: 600;
+color: var(--primary-gold);
+opacity: 0;
+letter-spacing: 3px;
+text-transform: uppercase;
+animation: fadeInUpText 1.2s ease-out 1.2s forwards;
+text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
 }
-@media (max-width:360px){
-  .school-logo-left, .school-logo-right{ width:45px; height:45px; top:10px }
-  .school-logo-left{ left:10px } .school-logo-right{ right:10px }
+
+.intro-text:nth-child(2) {
+font-family: 'Great Vibes', cursive;
+font-size: clamp(1.5rem, 4vw, 2.5rem);
+color: var(--accent-red);
+letter-spacing: 1px;
+text-transform: none;
+margin-top: 15px;
+animation-delay: 1.8s;
+}
+
+@keyframes fadeInUpText {
+from { transform: translateY(40px); opacity: 0; }
+to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeOutIntro {
+to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+.content-wrapper {
+position: relative;
+z-index: 10;
+padding: 80px 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+}
+
+.content-card {
+max-width: 950px;
+width: 100%;
+background: var(--card-bg);
+backdrop-filter: blur(20px) saturate(180%);
+border-radius: 40px;
+padding: clamp(50px, 7vw, 90px) clamp(30px, 5vw, 70px);
+border: 2px solid rgba(212, 175, 55, 0.3);
+box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 100px rgba(212, 175, 55, 0.15);
+position: relative;
+opacity: 0;
+transform: translateY(60px) scale(0.95);
+animation: cardEntrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 4.2s forwards;
+}
+
+@keyframes cardEntrance {
+to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.corner-decoration {
+position: absolute;
+width: 80px; height: 80px;
+border: 2px solid var(--primary-gold);
+opacity: 0;
+animation: cornerFadeIn 0.8s ease-out 4.8s forwards;
+}
+
+.corner-decoration.top-left {
+top: -2px; left: -2px;
+border-right: none; border-bottom: none;
+border-radius: 40px 0 0 0;
+}
+
+.corner-decoration.top-right {
+top: -2px; right: -2px;
+border-left: none; border-bottom: none;
+border-radius: 0 40px 0 0;
+}
+
+.corner-decoration.bottom-left {
+bottom: -2px; left: -2px;
+border-right: none; border-top: none;
+border-radius: 0 0 0 40px;
+}
+
+.corner-decoration.bottom-right {
+bottom: -2px; right: -2px;
+border-left: none; border-top: none;
+border-radius: 0 0 40px 0;
+}
+
+@keyframes cornerFadeIn {
+from { opacity: 0; transform: scale(0.5); }
+to { opacity: 0.4; transform: scale(1); }
+}
+
+.school-logo-left, .school-logo-right {
+position: absolute;
+top: 20px;
+width: clamp(55px, 10vw, 90px);
+height: clamp(55px, 10vw, 90px);
+border-radius: 50%;
+box-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 5px 20px rgba(0, 0, 0, 0.4);
+border: 3px solid var(--primary-gold);
+opacity: 0;
+z-index: 15;
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+
+.school-logo-left {
+left: 20px;
+animation: logoSlideInLeft 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 4.8s forwards;
+}
+
+.school-logo-right {
+right: 20px;
+animation: logoSlideInRight 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 4.8s forwards;
+}
+
+.school-logo-left:hover, .school-logo-right:hover {
+transform: scale(1.1) rotate(5deg);
+}
+
+@keyframes logoSlideInLeft {
+from { transform: translateX(-100px) rotate(-180deg) scale(0); opacity: 0; }
+to { transform: translateX(0) rotate(0deg) scale(1); opacity: 1; }
+}
+
+@keyframes logoSlideInRight {
+from { transform: translateX(100px) rotate(180deg) scale(0); opacity: 0; }
+to { transform: translateX(0) rotate(0deg) scale(1); opacity: 1; }
+}
+
+.title-wrapper {
+margin-top: clamp(60px, 10vw, 80px);
+margin-bottom: 40px;
+text-align: center;
+}
+
+.title {
+font-family: 'Cinzel', serif;
+font-size: clamp(2.5rem, 7vw, 4.5rem);
+font-weight: 600;
+background: linear-gradient(135deg, #ffffff 0%, var(--primary-gold) 25%, var(--soft-gold) 50%, var(--primary-gold) 75%, #ffffff 100%);
+background-size: 300% 300%;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+animation: titleReveal 1s ease-out 5s forwards, gradientFlow 4s ease 5.5s infinite;
+line-height: 1.3;
+letter-spacing: 4px;
+text-transform: uppercase;
+position: relative;
+display: inline-block;
+opacity: 0;
+}
+
+@keyframes titleReveal { to { opacity: 1; } }
+
+.title::before, .title::after {
+content: '';
+position: absolute;
+height: 2px;
+width: 0;
+background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+left: 50%;
+transform: translateX(-50%);
+animation: lineExpand 1.5s ease-out 5.3s forwards;
+}
+
+.title::before { top: -15px; }
+.title::after { bottom: -15px; }
+
+@keyframes lineExpand { to { width: 100%; } }
+
+@keyframes gradientFlow {
+0%, 100% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+}
+
+.subtitle {
+font-family: 'Great Vibes', cursive;
+font-size: clamp(1.5rem, 4vw, 2.5rem);
+color: var(--accent-red);
+margin-bottom: 30px;
+opacity: 0;
+animation: fadeInScale 0.8s ease-out 5.5s forwards, subtitleGlow 3s ease-in-out 6.5s infinite;
+letter-spacing: 1px;
+text-align: center;
+}
+
+@keyframes fadeInScale {
+from { opacity: 0; transform: scale(0.8); }
+to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes subtitleGlow {
+0%, 100% { filter: drop-shadow(0 0 5px rgba(199, 84, 80, 0.3)); transform: scale(1); }
+50% { filter: drop-shadow(0 0 15px rgba(199, 84, 80, 0.6)); transform: scale(1.02); }
+}
+
+.divider {
+width: 0;
+height: 2px;
+background: linear-gradient(to right, transparent, var(--primary-gold), transparent);
+margin: 35px auto;
+position: relative;
+animation: dividerExpand 1.5s ease-out 5.6s forwards;
+}
+
+.divider::before, .divider::after {
+content: '❖';
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+font-size: 12px;
+color: var(--primary-gold);
+opacity: 0;
+animation: symbolFade 0.8s ease-out 6.8s forwards;
+}
+
+.divider::before { left: -30px; }
+.divider::after { right: -30px; }
+
+@keyframes dividerExpand { to { width: 70%; } }
+@keyframes symbolFade { to { opacity: 1; } }
+
+.message {
+font-size: clamp(1.1rem, 2.8vw, 1.7rem);
+font-weight: 300;
+color: #e8e8e8;
+line-height: 2;
+margin-bottom: 40px;
+text-align: center;
+opacity: 0;
+animation: messageReveal 1s ease-out 5.8s forwards;
+letter-spacing: 0.5px;
+padding: 0 10px;
+}
+
+@keyframes messageReveal {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.event-details {
+background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(30, 30, 40, 0.6) 50%, rgba(212, 175, 55, 0.08) 100%);
+border-radius: 25px;
+padding: clamp(30px, 5vw, 45px);
+border: 2px solid rgba(212, 175, 55, 0.25);
+margin: 40px 0;
+position: relative;
+overflow: hidden;
+box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.05), 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.event-details::before {
+content: '';
+position: absolute;
+top: 0; left: -100%;
+width: 100%; height: 100%;
+background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+animation: shimmer 3s infinite 7s;
+}
+
+@keyframes shimmer { to { left: 100%; } }
+
+.detail-item {
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 20px 0;
+font-size: clamp(1.2rem, 3vw, 1.9rem);
+font-weight: 400;
+color: var(--text-light);
+opacity: 0;
+animation: detailSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+letter-spacing: 1px;
+gap: 15px;
+}
+
+.detail-item:nth-child(1) { animation-delay: 6s; }
+.detail-item:nth-child(2) { animation-delay: 6.3s; }
+.detail-item:nth-child(3) { animation-delay: 6.6s; }
+
+@keyframes detailSlideIn {
+from { transform: translateX(-80px); opacity: 0; }
+to { transform: translateX(0); opacity: 1; }
+}
+
+.detail-icon {
+font-size: clamp(1.5rem, 4vw, 2.2rem);
+animation: iconBounce 2s ease-in-out infinite;
+display: inline-block;
+}
+
+@keyframes iconBounce {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-5px); }
+}
+
+.detail-item:nth-child(1) .detail-icon { animation-delay: 7s; }
+.detail-item:nth-child(2) .detail-icon { animation-delay: 7.3s; }
+.detail-item:nth-child(3) .detail-icon { animation-delay: 7.6s; }
+
+.detail-highlight {
+color: var(--primary-gold);
+font-weight: 600;
+text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+margin-left: 8px;
+}
+
+.footer-message {
+font-family: 'Great Vibes', cursive;
+font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+color: var(--accent-red);
+margin-top: 40px;
+opacity: 0;
+animation: footerFadeIn 1s ease-out 6.8s forwards;
+text-shadow: 0 0 15px rgba(199, 84, 80, 0.3);
+letter-spacing: 1px;
+text-align: center;
+}
+
+@keyframes footerFadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes creditFadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+.heart-icon {
+color: var(--primary-gold);
+animation: heartbeat 1.5s ease-in-out infinite;
+display: inline-block;
+font-size: 1.2em;
+}
+
+@keyframes heartbeat {
+0%, 100% { transform: scale(1); }
+10%, 30% { transform: scale(1.3); }
+20%, 40% { transform: scale(1.1); }
+}
+
+.audio-control {
+position: fixed;
+bottom: 30px;
+right: 30px;
+z-index: 1000;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+background: var(--card-bg);
+border: 2px solid var(--primary-gold);
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+font-size: 24px;
+color: var(--primary-gold);
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+transition: all 0.3s ease;
+opacity: 0;
+animation: audioControlFadeIn 0.5s ease-out 5s forwards;
+}
+
+@keyframes audioControlFadeIn { to { opacity: 1; } }
+
+.audio-control:hover {
+transform: scale(1.1);
+box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+}
+
+.audio-control.playing {
+animation: pulse 2s ease-in-out infinite 5.5s;
+}
+
+@keyframes pulse {
+0%, 100% { box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); }
+50% { box-shadow: 0 5px 30px rgba(212, 175, 55, 0.6); }
+}
+
+.website-credit {
+position: fixed;
+bottom: 15px;
+left: 350px;
+font-family: 'Cormorant Garamond', serif;
+font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+color: rgba(212, 175, 55, 0.7);
+opacity: 0;
+transition: opacity 0.5s ease;
+text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+letter-spacing: 0.25px;
+z-index: 100;
+}
+
+.website-credit.visible {
+opacity: 1;
+}
+
+@media (max-width: 768px) {
+body { background-attachment: scroll; }
+.content-card { border-radius: 30px; padding: clamp(40px, 8vw, 60px) clamp(25px, 6vw, 40px); }
+.school-logo-left, .school-logo-right { width: clamp(50px, 12vw, 70px); height: clamp(50px, 12vw, 70px); top: 15px; }
+.school-logo-left { left: 15px; }
+.school-logo-right { right: 15px; }
+.title-wrapper { margin-top: clamp(55px, 12vw, 70px); }
+.title { letter-spacing: 2px; }
+.detail-item { flex-direction: column; text-align: center; gap: 8px; }
+.corner-decoration { width: 50px; height: 50px; }
+.divider::before { left: -20px; }
+.divider::after { right: -20px; }
+.audio-control { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 20px; }
+
+.website-credit {
+bottom: 20px;
+left: 20px;
+font-size: 0.5rem;
+}
+}
+
+@media (max-width: 480px) {
+.content-card { border-radius: 25px; }
+.title { letter-spacing: 1px; }
+.title::before, .title::after { display: none; }
+.event-details { padding: clamp(25px, 6vw, 35px); }
+.detail-item { margin: 15px 0; }
+.intro-logo { width: clamp(180px, 50vw, 280px); height: clamp(180px, 50vw, 280px); }
+.corner-decoration { width: 40px; height: 40px; }
+
+.website-credit {
+left: 50%;
+transform: translateX(-50%);
+width: 90%;
+text-align: center;
+bottom: 20px;
+font-size: 0.5rem;
+}
+}
+
+@media (max-width: 360px) {
+.school-logo-left, .school-logo-right { width: 45px; height: 45px; top: 10px; }
+.school-logo-left { left: 10px; }
+.school-logo-right { right: 10px; }
 }
 </style>
 </head>
 <body>
 
-<div class="particles" id="particles" aria-hidden="true"></div>
+<div class="particles" id="particles"></div>
 
-<div class="intro-logo-container" id="introOverlay" role="region" aria-label="Farewell introduction overlay">
-  <div class="intro-logo-wrapper">
-    <img src="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/54e3d067aa543a7ccef09566b2435a7e8c059f3c/school%20logo.png"
-         class="intro-logo" alt="Saint Paul's School logo" width="520" height="520" decoding="async">
-    <div class="intro-rings" aria-hidden="true"></div>
-    <div class="intro-rings" aria-hidden="true"></div>
-  </div>
-  <div class="intro-text-group">
-    <div class="intro-text">Saint Paul's School</div>
-    <div class="intro-text">Farewell Celebration 2025</div>
-  </div>
+<div class="intro-logo-container">
+<div class="intro-logo-wrapper">
+<img src="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/54e3d067aa543a7ccef09566b2435a7e8c059f3c/school%20logo.png" class="intro-logo" alt="School Logo">
+<div class="intro-rings"></div>
+<div class="intro-rings"></div>
+</div>
+<div class="intro-text-group">
+<div class="intro-text">Saint Paul's School</div>
+<div class="intro-text">Farewell Celebration 2025</div>
+</div>
 </div>
 
 <div class="content-wrapper">
-  <div class="content-card" role="main" aria-labelledby="titleId">
-    <div class="corner-decoration top-left" aria-hidden="true"></div>
-    <div class="corner-decoration top-right" aria-hidden="true"></div>
-    <div class="corner-decoration bottom-left" aria-hidden="true"></div>
-    <div class="corner-decoration bottom-right" aria-hidden="true"></div>
+<div class="content-card">
+<div class="corner-decoration top-left"></div>
+<div class="corner-decoration top-right"></div>
+<div class="corner-decoration bottom-left"></div>
+<div class="corner-decoration bottom-right"></div>
 
-    <img src="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/54e3d067aa543a7ccef09566b2435a7e8c059f3c/school%20logo.png"
-         class="school-logo-left" alt="Saint Paul's School logo (left)" width="90" height="90" loading="eager" decoding="async">
-    <img src="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/54e3d067aa543a7ccef09566b2435a7e8c059f3c/school%20logo.png"
-         class="school-logo-right" alt="Saint Paul's School logo (right)" width="90" height="90" loading="eager" decoding="async">
+<img src="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/54e3d067aa543a7ccef09566b2435a7e8c059f3c/school%20logo.png" class="school-logo-left" alt="Left Logo">
+<img src="https://raw.githubusercontent.com/ankushchowrasia/ankushchowrasia/54e3d067aa543a7ccef09566b2435a7e8c059f3c/school%20logo.png" class="school-logo-right" alt="Right Logo">
 
-    <div class="title-wrapper">
-      <div id="titleId" class="title">Farewell Celebration</div>
-    </div>
-
-    <div class="subtitle">🌟 Dear Seniors 🌟</div>
-    <div class="divider" aria-hidden="true"></div>
-
-    <div class="message">
-      Dear Seniors, we warmly invite you to an evening of memories, laughter, and celebration 🎉 as we bid farewell to you all. Let us come together to cherish the journey, honor the bonds we've shared, and welcome a new beginning with smiles and gratitude. 😊
-    </div>
-
-    <div class="event-details" role="group" aria-label="Event details">
-      <div class="detail-item" role="article">
-        <span class="detail-icon" aria-hidden="true">📅</span>
-        <span>Date: <span class="detail-highlight">22nd December, 2025</span></span>
-      </div>
-      <div class="detail-item" role="article">
-        <span class="detail-icon" aria-hidden="true">⏰</span>
-        <span>Time: <span class="detail-highlight">4:00 PM Onwards</span></span>
-      </div>
-      <div class="detail-item" role="article">
-        <span class="detail-icon" aria-hidden="true">📍</span>
-        <span>Venue: <span class="detail-highlight">Saint Paul's School, Paharpur Campus</span></span>
-      </div>
-    </div>
-
-    <div class="footer-message">With best wishes from your juniors! <span class="heart-icon" aria-hidden="true">❤</span></div>
-  </div>
+<div class="title-wrapper">
+<div class="title">Farewell Celebration</div>
 </div>
 
-<div class="website-credit" id="websiteCredit">Mfg. by Ankush Chowrasia</div>
+<div class="subtitle">🌟 Dear Seniors 🌟</div>
+<div class="divider"></div>
 
-<button class="audio-control" id="audioControl" aria-label="Toggle background music" title="Toggle music">🔊</button>
+<div class="message">
+Dear Seniors, we warmly invite you to an evening of memories, laughter, and celebration 🎉 as we bid farewell to you all. Let us come together to cherish the journey, honor the bonds we've shared, and welcome a new beginning with smiles and gratitude. 😊
+</div>
 
-<audio id="bg-music" loop muted playsinline preload="auto">
-  <source src="https://raw.githubusercontent.com/ankushchowrasia/farewellivitation/4963cd9a91fd809de5a1109862d08452103454d0/WhatsApp%20Video%202025-10-31%20at%2022.11.19_7db48dfd.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
+<div class="event-details">
+<div class="detail-item">
+<span class="detail-icon">📅</span>
+<span>Date: <span class="detail-highlight">22nd December, 2025</span></span>
+</div>
+<div class="detail-item">
+<span class="detail-icon">⏰</span>
+<span>Time: <span class="detail-highlight">4:00 PM Onwards</span></span>
+</div>
+<div class="detail-item">
+<span class="detail-icon">📍</span>
+<span>Venue: <span class="detail-highlight">Saint Paul's School, Paharpur Campus</span></span>
+</div>
+</div>
+
+<div class="footer-message">With best wishes from your juniors! <span class="heart-icon">❤</span></div>
+
+</div>
+</div>
+
+<div class="website-credit">Mfg.by Ankush Chowrasia</div>
+
+<div class="audio-control" id="audioControl">🔊</div>
+
+<audio id="bg-music" loop>
+<source src="https://raw.githubusercontent.com/ankushchowrasia/farewellivitation/4963cd9a91fd809de5a1109862d08452103454d0/WhatsApp%20Video%202025-10-31%20at%2022.11.19_7db48dfd.mp3" type="audio/mpeg">
+Failure to load resource: the server responded with a status of 404 ()
 </audio>
 
 <script>
-/* Invitation runtime logic (same as earlier) */
-document.addEventListener('DOMContentLoaded', function(){
-  const container = document.getElementById('particles');
-  for (let i=0;i<30;i++){ // lowered for runtime performance inside iframe
-    const p=document.createElement('div'); p.className='particle';
-    p.style.left = Math.random()*100 + 'vw'; p.style.animationDelay = Math.random()*20 + 's';
-    const s = Math.random()*4+2; p.style.width = s+'px'; p.style.height = s+'px';
-    container.appendChild(p);
-  }
+document.addEventListener('DOMContentLoaded', () => {
+const container = document.getElementById('particles');
+for (let i = 0; i < 60; i++) {
+const p = document.createElement('div');
+p.classList.add('particle');
+p.style.left = `${Math.random() * 100}vw`;
+p.style.animationDelay = `${Math.random() * 20}s`;
+const size = Math.random() * 4 + 2;
+p.style.width = `${size}px`;
+p.style.height = `${size}px`;
+container.appendChild(p);
+}
 
-  const music = document.getElementById('bg-music');
-  const audioControl = document.getElementById('audioControl');
-  let isPlaying=false;
+const music = document.getElementById('bg-music');
+const audioControl = document.getElementById('audioControl');
+let isPlaying = false;
 
-  audioControl.addEventListener('click', function(){
-    if(music.paused){ music.muted=false; music.play().catch(()=>{}); audioControl.textContent='🔊'; audioControl.classList.add('playing'); isPlaying=true; }
-    else { music.pause(); audioControl.textContent='🔇'; audioControl.classList.remove('playing'); isPlaying=false; }
-  });
-
-  setTimeout(()=>{ const playP = music.play(); if(playP && typeof playP.then==='function'){ playP.catch(()=>{/*blocked*/}); } }, 4000);
-
-  // remove intro overlay after CSS animation
-  setTimeout(()=>{ const intro=document.getElementById('introOverlay'); if(intro && intro.parentNode) intro.parentNode.removeChild(intro); }, 6000);
-
-  // credit show on scroll
-  const creditLine = document.getElementById('websiteCredit');
-  function checkScroll(){ if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) creditLine.classList.add('visible'); else creditLine.classList.remove('visible'); }
-  window.addEventListener('scroll', checkScroll, {passive:true}); checkScroll();
+audioControl.addEventListener('click', () => {
+if (isPlaying) {
+music.pause();
+audioControl.textContent = '🔇';
+audioControl.classList.remove('playing');
+} else {
+music.play();
+audioControl.textContent = '🔊';
+audioControl.classList.add('playing');
+}
+isPlaying = !isPlaying;
 });
-</script>
 
-</body>
-</html>
-`
-];
+setTimeout(() => {
+const playPromise = music.play();
 
-/* 5) Wait a small randomized delay, then assemble and inject into iframe */
-setTimeout(function(){
-  try {
-    var assembled = htmlChunks.join('');
-    // Create blob and assign as blob URL to iframe (slightly harder to directly open source than inline srcdoc)
-    var blob = new Blob([assembled], { type: 'text/html' });
-    var blobURL = URL.createObjectURL(blob);
-    var iframe = document.getElementById('protectedFrame');
-    // Use sandbox with allow-scripts; allow-same-origin so fonts/images load normally.
-    iframe.src = blobURL;
+if (playPromise !== undefined) {
+playPromise.then(_ => {
+isPlaying = true;
+audioControl.textContent = '🔊';
+audioControl.classList.add('playing');
+}).catch(error => {
+console.log('Autoplay blocked by browser.');
+audioControl.textContent = '🔇';
+isPlaying = false;
+});
+}
+}, 5000);
 
-    // Release the blob URL after some time to reduce easy retrieval
-    setTimeout(function(){ URL.revokeObjectURL(blobURL); }, 60 * 1000); // revoke after 60s
-  } catch(err) {
-    // Fallback: write minimal error
-    var frame = document.getElementById('protectedFrame');
-    frame.srcdoc = '<html><body style="background:#111;color:#ddd;font-family:arial;padding:20px">Failed to load protected content.</body></html>';
-  }
-}, randDelay(300,900));
+const creditLine = document.querySelector('.website-credit');
 
-/* 6) Extra: attempt to obfuscate direct copy by intercepting devtools open detection (best-effort) */
-(function detectDevTools(){
-  var threshold = 160;
-  var check = function(){
-    var widthThreshold = window.outerWidth - window.innerWidth > threshold;
-    var heightThreshold = window.outerHeight - window.innerHeight > threshold;
-    if (widthThreshold || heightThreshold) {
-      try { document.body.innerHTML = '<div style="background:#111;color:#f66;padding:40px;font-family:monospace">DevTools detected — content hidden.</div>'; } catch(e){}
-    }
-  };
-  // Run a few times quickly, then stop to avoid heavy CPU
-  var cnt = 0, max = 6;
-  var iv = setInterval(function(){
-    check(); cnt++; if(cnt>max) clearInterval(iv);
-  }, 700);
-})();
+function checkScroll() {
+if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+creditLine.classList.add('visible');
+} else {
+creditLine.classList.remove('visible');
+}
+}
+
+window.addEventListener('scroll', checkScroll);
+checkScroll();
+});
 </script>
 
 </body>
